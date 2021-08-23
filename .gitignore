@@ -1,0 +1,5 @@
+*.pt
+*.npy
+datasets
+meeting logs
+papers
