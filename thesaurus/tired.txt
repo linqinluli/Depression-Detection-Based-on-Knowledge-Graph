@@ -1,38 +1,39 @@
-annoyed
-bored
-distressed
-drained
-exasperated
-fatigued
-irritated
-overworked
-sleepy
-stale
-beat
-collapsing
-consumed
-drooping
-empty
-enervated
-fagged
-faint
-finished
-flagging
-irked
-jaded
-overtaxed
-prostrated
-spent
-wasted
-asleep
-broken-down
-burned
-dog-tired
-droopy
-drowsy
-haggard
-narcoleptic
-pooped
-run-down
-tuckered
-worn
+tired 1
+annoyed 0.75
+bored 0.75
+distressed 0.75
+drained 0.75
+exasperated 0.75
+fatigued 0.75
+irritated 0.75
+overworked 0.75
+sleepy 0.75
+stale 0.75
+beat 0.5
+collapsing 0.5
+consumed 0.5
+drooping 0.5
+empty 0.5
+enervated 0.5
+fagged 0.5
+faint 0.5
+finished 0.5
+flagging 0.5
+irked 0.5
+jaded 0.5
+overtaxed 0.5
+prostrated 0.5
+spent 0.5
+wasted 0.5
+asleep 0.5
+broken-down 0.25
+burned 0.25
+dog-tired 0.25
+droopy 0.25
+drowsy 0.25
+haggard 0.25
+narcoleptic 0.25
+pooped 0.25
+run-down 0.25
+tuckered 0.25
+worn 0.25

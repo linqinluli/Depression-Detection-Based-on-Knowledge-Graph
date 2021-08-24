@@ -1,44 +1,36 @@
-agitated
-anxious
-apprehensive
-edgy
-excited
-jittery
-nervous
-restive
-shaky
-strained
-uneasy
-choked
-clutched
-concerned
-moved
-moving
-shot
-unnerved
-wired
-worried
-worrying
-wreck
-fidgety
-fluttery
-high-strung
-hung up
-hyper
-tizzy
-jumpy
-keyed up
-nerve-racking
-nervous wreck
-on edge
-overanxious
-overwrought
-queasy
-restless
-shot to pieces
-strung out
-unquiet
-up the wall
-uptight
-white knuckled
-wound up
+stressful 1
+agitated 0.75
+anxious 0.75
+apprehensive 0.75
+edgy 0.75
+excited 0.75
+jittery 0.75
+nervous 0.75
+restive 0.75
+shaky 0.75
+strained 0.75
+uneasy 0.75
+choked 0.5
+clutched 0.5
+concerned 0.5
+moved 0.5
+moving 0.5
+shot 0.5
+unnerved 0.5
+wired 0.5
+worried 0.5
+worrying 0.5
+wreck 0.5
+fidgety 0.25
+fluttery 0.25
+high-strung 0.25
+hyper 0.25
+tizzy 0.25
+jumpy 0.25
+nerve-racking 0.25
+overanxious 0.25
+overwrought 0.25
+queasy 0.25
+restless 0.25
+unquiet 0.25
+uptight 0.25

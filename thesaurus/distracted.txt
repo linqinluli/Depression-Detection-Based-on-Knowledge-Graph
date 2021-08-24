@@ -1,8 +1,9 @@
-disturbed
-panicked
-distressed
-distraught
-frenzied
-inattentive
-preoccupied
-abstracted
+distracted 1
+disturbed 0.75
+panicked 0.75
+distressed 0.5
+distraught 0.25
+frenzied 0.25 
+inattentive 0.75
+preoccupied 0.75
+abstracted 0.5

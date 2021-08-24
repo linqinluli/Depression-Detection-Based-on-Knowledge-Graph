@@ -3,20 +3,26 @@ from pickle import TRUE
 import numpy as np
 from util import read_data, feature_extract, calAUC
 #%%
-# train = read_data('train', 1000)
-# val = read_data('val', 1000)
-train=np.load('half.npy', allow_pickle=True)
-val = np.load('val_half.npy', allow_pickle=True)
-train=train.tolist()
-val = val.tolist()
+train = read_data('train', 3000)
+val = read_data('test', 2000)
+# train=np.load('half.npy', allow_pickle=True)
+# val = np.load('val_half.npy', allow_pickle=True)
+# train=train.tolist()
+# val = val.tolist()
 #%%
 train_x, train_y = feature_extract(train)
 val_x, val_y = feature_extract(val)
-np.save('train_x', train_x)
-np.save('train_y', train_y)
-np.save('val_x', val_x) 
-np.save('val_y', val_y)
-
+np.save('bert_train_x', train_x)
+np.save('bert_train_y', train_y)
+np.save('bert_val_x', val_x)
+np.save('bert_val_y', val_y)
+#%%
+from pickle import TRUE
+import numpy as np
+train_x = np.load('bert_train_x.npy', allow_pickle=True)
+train_y = np.load('bert_train_y.npy', allow_pickle=True)
+val_x = np.load('bert_val_x.npy', allow_pickle=True)
+val_y = np.load('bert_val_y.npy', allow_pickle=True)
 #%%
 from torch.utils.data import Dataset, DataLoader
 import torch
@@ -25,8 +31,9 @@ import torch.nn.functional as F
 from model import DEPredictor
 from RSDDDataset import RSDDDataset
 from sklearn.metrics import accuracy_score, f1_score, recall_score, precision_score, classification_report
+from util import calAUC
 lr = 0.0001
-BatchSize = 16
+BatchSize = 32
 EPOCH = 30
 
 from model import DEPredictor
@@ -38,8 +45,8 @@ train_dataloader = DataLoader(train_data, batch_size=BatchSize, shuffle=True)
 val_dataloader = DataLoader(val_data, batch_size=10000, shuffle=True)
 
 property_num = train_x.shape[1]
-
-loss_fn = nn.BCELoss()
+weight = torch.tensor([0.1]).cuda()
+loss_fn = nn.BCELoss(weight=weight)
 predictor = DEPredictor(property_num).cuda()
 print(predictor)
 
@@ -50,7 +57,7 @@ optimizer = torch.optim.Adam(predictor.parameters(), lr=lr)
 loss_list = []
 best_auc = 0
 
-for epoch in range(80):
+for epoch in range(100):
     epoch_loss = []
     for batch, (feature, label) in enumerate(train_dataloader):
         x, y = feature.cuda(), label.cuda()
@@ -67,8 +74,6 @@ for epoch in range(80):
             valx, valy = feature.cuda(), label.cuda()
             valpred = predictor(valx)
 
-        auc = 1
-        
         valy = valy.cpu().detach().numpy()
         valpred = valpred.cpu().detach().numpy()
 
@@ -79,14 +84,16 @@ for epoch in range(80):
         recall = recall_score(valy, valpred, average='macro')
         precision = precision_score(valy, valpred, average='macro')
         target_names = ['Depression', 'Control']
-        report = classification_report(valy, valpred, target_names=target_names)
+        report = classification_report(valy,
+                                       valpred,
+                                       target_names=target_names)
         if (auc > best_auc):
             best_auc = auc
             best_score = report
             fn = (("lr_" + str(lr)) + ".pt")
             torch.save(predictor.state_dict(), fn)
 
-        print(report)
+        # print(report)
         print("valid AUC:", round(auc, 4), '\tbest AUC:', round(best_auc, 4))
 
 # %%
@@ -99,4 +106,8 @@ from collections import Counter
 print(Counter(valy.flatten()))
 # %%
 loss_list
+# %%
+train_x.shape
+
+# %%
 # %%

@@ -1,48 +1,49 @@
-easy
-gradual
-heavy
-lackadaisical
-leisurely
-lethargic
-moderate
-passive
-quiet
-reluctant
-sluggish
-stagnant
-crawling
-creeping
-dawdling
-delaying
-deliberate
-disinclined
-idle
-lagging
-loitering
-measured
-plodding
-postponing
-procrastinating
-slack
-apathetic
-dilatory
-dreamy
-drowsy
-imperceptible
-inactive
-indolent
-inert
-laggard
-leaden
-listless
-negligent
-phlegmatic
-ponderous
-remiss
-sleepy
-slothful
-snaillike
-supine
-tardy
-torpid
-tortoiselike
+slow-moving 1
+easy 0.75
+gradual 0.75
+heavy 0.75
+lackadaisical 0.75
+leisurely 0.75
+lethargic 0.75
+moderate 0.75
+passive 0.75
+quiet 0.75
+reluctant 0.75
+sluggish 0.75
+stagnant 0.75
+crawling 0.5
+creeping 0.5
+dawdling 0.5
+delaying 0.5
+deliberate 0.5
+disinclined 0.5
+idle 0.5
+lagging 0.5
+loitering 0.5
+measured 0.5
+plodding 0.5
+postponing 0.5
+procrastinating 0.5
+slack 0.5
+apathetic 0.25
+dilatory 0.25
+dreamy 0.25
+drowsy 0.25
+imperceptible 0.25
+inactive 0.25
+indolent 0.25
+inert 0.25
+laggard 0.25
+leaden 0.25
+listless 0.25
+negligent 0.25
+phlegmatic 0.25
+ponderous 0.25
+remiss 0.25
+sleepy 0.25
+slothful 0.25
+snaillike 0.25
+supine 0.25
+tardy 0.25
+torpid 0.25
+tortoiselike 0.25

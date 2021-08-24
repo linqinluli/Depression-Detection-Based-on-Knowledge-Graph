@@ -20,8 +20,8 @@ class AttentionLayer(nn.Module):
         self.bias = nn.Parameter(torch.Tensor(1, in_features))
 
     def forward(self, input):
-        
-        output =torch.zeros_like(input)
+
+        output = torch.zeros_like(input)
         for i in range(input.shape[0]):
 
             alpha = F.softmax(torch.mm(input[i].t(), self.weight) + self.bias)
@@ -34,19 +34,27 @@ class AttentionLayer(nn.Module):
 class DEPredictor(torch.nn.Module):
     def __init__(self, property_num):
         super(DEPredictor, self).__init__()
-
-        self.attention = AttentionLayer(property_num)
-        self.fn1 = nn.Linear(property_num, property_num)
-        self.fn2 = nn.Linear(property_num, 1)
+        self.attention = AttentionLayer(12)
+        self.fn1 = nn.Linear(property_num, 128)
+        self.fn2 = nn.Linear(128, 128)
+        self.fn3 = nn.Linear(128, 128)
+        self.fn4 = nn.Linear(128, 1)
 
     def forward(self, x):
 
         # print(x.shape)
-        x = self.attention(x)
+        bert = x[:, 12:]
+        feature = x[:, :12]
+
+        feature = self.attention(feature)
+
+        x = torch.cat((feature, bert), axis=1)
         x = torch.reshape(x, (x.shape[0], -1))
         # print(x.shape)
         x = self.fn1(x)
         x = self.fn2(x)
+        x = self.fn3(x)
+        x = self.fn4(x)
 
         output = F.sigmoid(x)
 

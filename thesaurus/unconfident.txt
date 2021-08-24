@@ -1,21 +1,18 @@
-afraid
-anxious
-apprehensive
-hesitant
-shaky
-touchy
-troubled
-unsure
-uptight
-Delphic
-choked
-diffident
-hanging by thread
-jumpy
-on thin ice
-questioning
-touch and go
-unassured
-unpoised
-up in the air
-vague
+unconfident 1
+afraid 0.75
+anxious 0.75
+apprehensive 0.75
+hesitant 0.75
+shaky 0.75
+touchy 0.75
+troubled 0.75
+unsure 0.75
+uptight 0.75
+Delphic 0.25
+choked 0.25
+diffident 0.25
+jumpy 0.25
+questioning 0.25
+unassured 0.25
+unpoised 0.25
+vague 0.25

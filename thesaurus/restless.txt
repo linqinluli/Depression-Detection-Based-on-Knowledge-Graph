@@ -1,42 +1,41 @@
-agitated
-anxious
-disturbed
-edgy
-fidgety
-itchy
-nervous
-restive
-sleepless
-troubled
-uneasy
-unruly
-unsettled
-active
-antsy
-bundle of nerves
-bustling
-changeable
-fidgeting
-fitful
-footloose
-fretful
-hurried
-inconstant
-intermittent
-irresolute
-jumpy
-nomadic
-perturbed
-roving
-spasmodic
-strung out
-tossing
-transient
-turbulent
-unpeaceful
-unquiet
-unrestful
-unstable
-unsteady
-wandering
-worried
+restless 1
+agitated 0.75
+anxious 0.75
+disturbed 0.75
+edgy 0.75
+fidgety 0.75
+itchy 0.75
+nervous 0.75
+restive 0.75
+sleepless 0.75
+troubled 0.75
+uneasy 0.75
+unruly 0.75
+unsettled 0.75
+active 0.25
+antsy 0.25
+bustling 0.25
+changeable 0.25
+fidgeting 0.25
+fitful 0.25
+footloose 0.25
+fretful 0.25
+hurried 0.25
+inconstant 0.25
+intermittent 0.25
+irresolute 0.25
+jumpy 0.25
+nomadic 0.25
+perturbed 0.25
+roving 0.25
+spasmodic 0.25
+tossing 0.25
+transient 0.25
+turbulent 0.25
+unpeaceful 0.25
+unquiet 0.25
+unrestful 0.25
+unstable 0.25
+unsteady 0.25
+wandering 0.25
+worried 0.25

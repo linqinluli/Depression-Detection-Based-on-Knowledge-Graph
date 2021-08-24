@@ -1,45 +1,45 @@
-apathetic
-careless
-dull
-inattentive
-indifferent
-lackadaisical
-lethargic
-passive
-sleepy
-tired
-weary
-asleep on the job
-comatose
-dallying
-dilatory
-drowsy
-flagging
-idle
-indolent
-inert
-laggard
-lagging
-languid
-languorous
-lifeless
-loafing
-neglectful
-out of it
-procrastinating
-remiss
-shiftless
-slack
-slothful
-slow
-slow-moving
-snoozy
-somnolent
-supine
-tardy
-torpid
-trifling
-unconcerned
-unindustrious
-unpersevering
-unready
+unenergetic 1
+apathetic 0.75
+careless 0.75
+dull 0.75
+inattentive 0.75
+indifferent 0.75
+lackadaisical 0.75
+lethargic 0.75
+passive 0.75
+sleepy 0.75
+tired 0.75
+weary 0.75
+asleep 0.5
+comatose 0.25
+dallying 0.25
+dilatory 0.25
+drowsy 0.25
+flagging 0.25
+idle 0.25
+indolent 0.25
+inert 0.25
+laggard 0.25
+lagging 0.25
+languid 0.25
+languorous 0.25
+lifeless 0.25
+loafing 0.25
+neglectful 0.25
+procrastinating 0.25
+remiss 0.25
+shiftless 0.25
+slack 0.25
+slothful 0.25
+slow 0.25
+slow-moving 0.25
+snoozy 0.25
+somnolent 0.25
+supine 0.25
+tardy 0.25
+torpid 0.25
+trifling 0.25
+unconcerned 0.25
+unindustrious 0.25
+unpersevering 0.25
+unready 0.25

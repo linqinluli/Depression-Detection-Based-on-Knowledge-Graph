@@ -1,6 +1,7 @@
-hara-kiri
-mélange
-self-destruction
-self-immolation
-self-slaughter
-seppuku
+suicide 1
+hara-kiri 0.5
+mélange 0.5
+self-destruction 0.5
+self-immolation 0.5
+self-slaughter 0.5
+seppuku 0.5
