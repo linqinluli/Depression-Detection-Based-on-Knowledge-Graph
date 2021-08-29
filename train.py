@@ -107,8 +107,10 @@ print(len(auc_list))
 # %%
 from matplotlib import pyplot 
 import matplotlib.pyplot as plt
-plt.plot(auc_list)
-plt.ylabel('some numbers')
+plt.plot(auc_list, label='auc score')
+plt.plot(f1_list, label='f1 score')
+plt.plot(acc_list,label='acc')
+plt.legend()
 plt.show()
 # %%
 

@@ -45,9 +45,9 @@
 
 针对每一项图谱中的内容设定0，1，2，3三个指标表示程度
 
-![b316bde9ac37ec27b8d040ef230288e](C:/Users/yhz/AppData/Local/Temp/WeChat Files/b316bde9ac37ec27b8d040ef230288e.png)
+![explainable1](report/explainable1.png)
 
-![ce8d5c45a81665cfe219750a83d1f8a](C:/Users/yhz/AppData/Local/Temp/WeChat Files/ce8d5c45a81665cfe219750a83d1f8a.png)
+![explainable2](report/explainable2.png)
 
 **训练图：**
 
