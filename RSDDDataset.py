@@ -4,9 +4,10 @@ from torch.utils.data import Dataset
 
 
 class RSDDDataset(Dataset):
-    def __init__(self, feature, label):
+    def __init__(self, feature, label ):
         self.x = feature
         self.y = label
+        # self.post = posts
 
     def __getitem__(self, idx):
 

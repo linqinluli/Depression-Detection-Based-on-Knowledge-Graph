@@ -65,17 +65,19 @@ def score_count(text, word_dict):
     for word_name in word_dict:
         tar_words.append(read_thesaurus(word_name))
     sum_list = [0 for x in range(len(tar_words))]
+    score_list = [0 for x in range(len(tar_words))]
     for i in range(len(tar_words)):
 
         for tar in tar_words[i]:
 
-            sum_list[i] = sum_list[i] + cnt[tar[0]] * float(tar[1])
+            sum_list[i] = sum_list[i] + cnt[tar[0]]
+            score_list[i] = score_list[i] + cnt[tar[0]] * float(tar[1])
             # print(float(tar[1]))
     # for tar in tar_words:
     #     # if cnt[tar] != 0:
     #     #     print(text)
     #     sum = sum + cnt[tar]
-    return sum_list
+    return sum_list, score_list
 
 
 def feature_extract(data):
@@ -87,12 +89,14 @@ def feature_extract(data):
     textNet = TextNet(code_length=32)
     tokenizer = BertTokenizer.from_pretrained(vocab_path)
     words_dic = [
-        'suicide', 'distracted', 'restless', 'sleepy', 'slow-moving', 'tired',
-        'unconfident', 'unenergetic', 'interested', 'negative', 'stressful'
+        'unenergetic', 'slow-moving', 'restless', 'sleepy', 'tired', 'suicide',
+        'stressful', 'distracted', 'interested', 'negative', 'unconfident'
     ]
     res = np.zeros((len(data), len(words_dic) + 1 + 32))
+    score_res = np.zeros((len(data), len(words_dic) + 1 + 32))
     label = np.zeros((len(data), ), dtype=int)
     print('beging to extract')
+    max_post_list = []
     for i in tqdm.tqdm(range(len(data))):
 
         num = len(data[i]['posts'])
@@ -104,14 +108,15 @@ def feature_extract(data):
 
             # tmp_stamp = int(post[0])
             # time_score = (tmp_stamp-begin_time)/time_span
-            sum_list = score_count(post[1], words_dic)
-
+            sum_list, score_list = score_count(post[1], words_dic)
             for j in range(len(sum_list)):
                 res[i][j] = res[i][j] + sum_list[j]
-            score = np.sum(res[i])
+                score_res[i][j] = score_res[i][j] + score_list[j]
+            score = np.sum(score_res[i][:11])
             if score > max_score:
                 max_score = score
                 max_post = post[1]
+        max_post_list.append(max_post)
         bert_feature = Bertone(textNet, tokenizer, max_post)
         # print(bert_feature)
         res[i][len(words_dic) + 1:] = bert_feature
@@ -124,7 +129,36 @@ def feature_extract(data):
         res[i][len(words_dic)] = num
         # print(res[i])
     print('finished')
-    return res, label
+    return res, label, score_res, max_post_list
+
+
+def predict_one(score, predict, text):
+    percent = [[2.25, 5.875, 14.125], [5.3125, 12.75, 29.4375],
+               [1.5, 3.5, 9.0], [2.75, 7.375, 16.75], [6.25, 14.125, 36.375],
+               [0.0, 2.0, 4.0], [6.75, 14.875, 34.75], [0.0, 0.75, 2.0],
+               [13.75, 31.75, 83.875], [0.0, 1.0, 5.0], [1.75, 4.5, 11.0]]
+    symptom = [0] * 11
+    words_dic = [
+        'unenergetic', 'slow-moving', 'restless', 'sleepy', 'tired', 'suicide',
+        'stressful', 'distracted', 'interested', 'negative', 'unconfident'
+    ]
+    for i in range(11):
+        if (score[i] < percent[i][0]):
+            symptom[i] = 0
+        elif score[i] >= percent[i][0] and score[i] < percent[i][1]:
+            symptom[i] = 1
+        elif score[i] >= percent[i][1] and score[i] < percent[i][2]:
+            symptom[i] = 2
+        else:
+            symptom[i] = 3
+    print('The user has a', round(predict * 100, 8),
+          '% chance of suffering from depression')
+    print('It can be inferred from the performance of the user’s Post that the symptoms that may be included are:')
+    print('symptom', '\tdegree')
+    for i in range(len(words_dic)):
+        print(words_dic[i], '\t', symptom[i])
+    print('Among them, the post that best reflects his/her depression is:')
+    print(text)
 
 
 def calAUC(prob, labels):

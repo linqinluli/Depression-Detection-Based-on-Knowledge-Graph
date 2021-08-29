@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+from torch._C import dtype
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -24,7 +25,10 @@ class AttentionLayer(nn.Module):
         output = torch.zeros_like(input)
         for i in range(input.shape[0]):
 
-            alpha = F.softmax(torch.mm(input[i].t(), self.weight) + self.bias)
+            alpha = F.softmax(
+                torch.mm(input[i].t().to(torch.float32),
+                         self.weight.to(torch.float32)) +
+                self.bias.to(torch.float32))
             res = input[i] * alpha.t()
             output[i] = res
 

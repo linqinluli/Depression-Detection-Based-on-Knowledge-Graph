@@ -19,10 +19,10 @@ np.save('bert_val_y', val_y)
 #%%
 from pickle import TRUE
 import numpy as np
-train_x = np.load('bert_train_x.npy', allow_pickle=True)
-train_y = np.load('bert_train_y.npy', allow_pickle=True)
-val_x = np.load('bert_val_x.npy', allow_pickle=True)
-val_y = np.load('bert_val_y.npy', allow_pickle=True)
+train_x = np.load('train_x.npy', allow_pickle=True)
+train_y = np.load('train_y.npy', allow_pickle=True)
+val_x = np.load('val_x.npy', allow_pickle=True)
+val_y = np.load('val_y.npy', allow_pickle=True)
 #%%
 from torch.utils.data import Dataset, DataLoader
 import torch
@@ -45,8 +45,8 @@ train_dataloader = DataLoader(train_data, batch_size=BatchSize, shuffle=True)
 val_dataloader = DataLoader(val_data, batch_size=10000, shuffle=True)
 
 property_num = train_x.shape[1]
-weight = torch.tensor([0.1]).cuda()
-loss_fn = nn.BCELoss(weight=weight)
+# weight = torch.tensor([0.1]).cuda()
+loss_fn = nn.BCELoss()
 predictor = DEPredictor(property_num).cuda()
 print(predictor)
 
@@ -55,6 +55,9 @@ optimizer = torch.optim.Adam(predictor.parameters(), lr=lr)
 #optimizer = torch.optim.SGD(predictor.parameters(), lr=lr)
 
 loss_list = []
+auc_list = []
+acc_list = []
+f1_list = []
 best_auc = 0
 
 for epoch in range(100):
@@ -87,6 +90,9 @@ for epoch in range(100):
         report = classification_report(valy,
                                        valpred,
                                        target_names=target_names)
+        auc_list.append(auc)
+        f1_list.append(f1)
+        acc_list.append(acc)
         if (auc > best_auc):
             best_auc = auc
             best_score = report
@@ -97,17 +103,13 @@ for epoch in range(100):
         print("valid AUC:", round(auc, 4), '\tbest AUC:', round(best_auc, 4))
 
 # %%
-print(best_score)
+print(len(auc_list))
 # %%
-np.save('train_x', train_x)
-np.save('train_y', train_y)
+from matplotlib import pyplot 
+import matplotlib.pyplot as plt
+plt.plot(auc_list)
+plt.ylabel('some numbers')
+plt.show()
 # %%
-from collections import Counter
-print(Counter(valy.flatten()))
-# %%
-loss_list
-# %%
-train_x.shape
 
-# %%
 # %%
